@@ -1,38 +1,28 @@
-import { useState } from 'react'
-//import reactLogo from './assets/react.svg'
-import './App.css'
+import React, { useState } from 'react';
+import Input from './Input';
+import TaskList from './TaskList';
+import './App.css' //css
 
+const App = () => {
+  const [tasks, setTasks] = useState([]);
+  const [taskInput, setTaskInput] = useState('');
 
+  const handleAddTask = (task) => {
+    setTasks([...tasks, task]);
+  };
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  
+  const handleDeleteTask = (index) => {
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
+  };
 
   return (
-    <>
-      <div class="container mt-5 pt-5">
-        <h1>Lista de Tareas</h1>
-        <div class="formulario">
-          <form>
-            <input class="rounded p-2" type="text" name="taskText" placeholder="Agregar tarea..." />
-            <button class="rounded p-2 añadirTarea"><i class="bi bi-clipboard2-plus"></i></button>
-          </form>
-        </div>
-        <div class="li-container">
-          <ul class="col gap-3">
+    <div>
+      <h1>Lista de tareas</h1>
+      <Input onAddTask={handleAddTask} setTaskInput={setTaskInput} taskInput={taskInput} />
+      <TaskList tasks={tasks} onDeleteTask={handleDeleteTask} />
+    </div>
+  );
+};
 
-          </ul>
-        </div>
-        <div class="empty">
-          <p>No tienes tareas pendientes.</p>
-        </div>
-      </div>
-    </>
-  )
-}
-
-
-
-
-export default App
+export default App;
