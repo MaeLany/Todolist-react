@@ -14,6 +14,10 @@
   color: #888;
 }
 
-.formulario{
-  margin-bottom:20px;
+.formulario {
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
 }
